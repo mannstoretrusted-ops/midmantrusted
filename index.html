@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDMAN TRUSTED</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --glass: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.15);
+            --blue: #007AFF;
+            --yellow: #FFD700;
+        }
+
+        * { 
+            margin: 0; padding: 0; box-sizing: border-box; 
+            font-family: 'Montserrat', sans-serif !important;
+            text-transform: uppercase !important;
+            font-weight: 900 !important;
+        }
+
+        body {
+            /* INTEGRATED BACKGROUND.JPG */
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            overflow-x: hidden;
+            padding: 40px 20px;
+        }
+
+        /* OVERLAY RIPPLE FOR LIQUID EFFECT */
+        .ripple-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; background: rgba(0,0,0,0.6); overflow: hidden;
+        }
+        .ripple {
+            position: absolute; width: 600px; height: 600px;
+            background: rgba(255,255,255,0.05); border-radius: 50%;
+            filter: blur(100px); animation: move 10s infinite alternate;
+        }
+        @keyframes move { from { transform: translate(-20%, -20%); } to { transform: translate(50%, 50%); } }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--border);
+            border-radius: 35px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        header { text-align: center; padding: 60px 20px; }
+        .icon {
+            width: 150px; height: 150px; border-radius: 50%;
+            object-fit: cover; border: 4px solid rgba(255,255,255,0.2);
+            margin-bottom: 20px; box-shadow: 0 0 30px rgba(255,255,255,0.2);
+        }
+        h1 { font-size: 2.5rem !important; margin-bottom: 10px; text-shadow: 0 0 20px rgba(255,255,255,0.3); }
+        .subtitle { opacity: 0.7; margin-bottom: 30px; }
+
+        button {
+            padding: 18px 35px; border-radius: 20px;
+            border: 1px solid var(--border); background: var(--glass);
+            color: white; cursor: pointer; transition: 0.4s;
+            text-shadow: 0 0 10px white;
+        }
+        button:hover { background: white; color: black; box-shadow: 0 0 30px white; }
+
+        #list, #tutorial { max-width: 600px; margin: 60px auto; }
+        .card { padding: 30px; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        
+        .name-container { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 1.2rem; }
+        
+        .check-circle { 
+            width: 22px; height: 22px; background: var(--blue);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 14px; color: white; box-shadow: 0 0 15px var(--blue);
+        }
+        .owner-badge {
+            background: var(--yellow); color: black; padding: 2px 10px; 
+            border-radius: 8px; font-size: 0.7rem; box-shadow: 0 0 20px var(--yellow);
+        }
+        
+        .btn-wa {
+            background: rgba(255,255,255,0.1); color: white; padding: 15px 40px; 
+            border-radius: 15px; text-decoration: none; margin-top: 10px;
+            border: 1px solid var(--border);
+        }
+        .btn-wa:hover { background: white; color: black; box-shadow: 0 0 20px white; }
+
+        .tutorial-step { padding: 25px; margin-bottom: 20px; border: 1px solid var(--border); }
+        .step-num { font-size: 1.2rem; display: block; margin-bottom: 5px; }
+
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+    <div class="ripple-bg"><div class="ripple"></div></div>
+
+    <header class="glass">
+        <img src="icon.jpg" alt="ICON" class="icon">
+        <h1>MIDMAN TRUSTED</h1>
+        <p class="subtitle">WELCOME TO MIDMAN TRUSTED WEBSITE</p>
+        <div style="display:flex; justify-content:center; gap:20px;">
+            <button onclick="document.getElementById('list').scrollIntoView()">LIHAT SENARAI</button>
+            <button onclick="document.getElementById('tutorial').scrollIntoView()">CARA GUNA MIDMAN</button>
+        </div>
+    </header>
+
+    <div id="list"></div>
+
+    <div id="tutorial">
+        <h2 style="text-align: center; margin-bottom: 30px;">CARA GUNA MIDMAN</h2>
+        <div id="steps"></div>
+    </div>
+
+    <script>
+        // List remains the same
+        const midmen = [
+            { name: "YANZARY STORE", link: "https://wa.me/601137650485", owner: true },
+            { name: "AJIMMXSTORE", link: "https://wa.me/60183808201" },
+            { name: "ALONG SHOP", link: "https://wa.me/60146893750" },
+            { name: "BILZ RESELLER", link: "https://wa.me/60106542785" },
+            { name: "DAMZZ RESELLER", link: "https://wa.me/601133169293" },
+            { name: "DILZ RESELLER", link: "https://wa.me/601175544177" },
+            { name: "HAIQAL OFFICIAL", link: "https://wa.me/60146148262" },
+            { name: "IKYY STORE", link: "https://wa.me/601161834315" },
+            { name: "JEEDZ STORE", link: "https://wa.me/60192872781" },
+            { name: "KAELXSTORE", link: "https://wa.me/60136198316" },
+            { name: "KERIZ STORE", link: "https://wa.me/60162531397" },
+            { name: "KRYZEN STORE", link: "https://wa.me/60136734585" },
+            { name: "MANN STORE", link: "https://wa.me/601163174853" },
+            { name: "MID IPANZZ", link: "https://wa.me/60175970694" },
+            { name: "MID PUT", link: "https://wa.me/601169706654" },
+            { name: "MID SYAH", link: "https://wa.me/60139009210" },
+            { name: "MID KUSA", link: "https://wa.me/601170130314" },
+            { name: "MID LUQQ", link: "https://wa.me/601127112378" },
+            { name: "MID ANOS", link: "https://wa.me/601161324347" },
+            { name: "MID BUTTER", link: "https://wa.me/60162898343" },
+            { name: "MID HAGEEZ", link: "https://wa.me/601161800304" },
+            { name: "MID IPAN STORE", link: "https://wa.me/601127182901" },
+            { name: "MID SKYY", link: "https://wa.me/601165130657" },
+            { name: "MIKASA STORE", link: "https://wa.me/601133192903" },
+            { name: "MIRQIEE STORE", link: "https://wa.me/60182773494" },
+            { name: "OYOT GAMER", link: "https://wa.me/60187946146" },
+            { name: "PROBE", link: "https://wa.me/601165130657" },
+            { name: "MID RAY", link: "https://wa.me/60174197400" },
+            { name: "MID SYAA", link: "https://wa.me/601125698207" },
+            { name: "WALNA RESELLER", link: "https://wa.me/601139470014" },
+            { name: "MANZ OFFICIAL STORE", link: "https://wa.me/601135602884" },
+            { name: "YIKK FANN STORE", link: "https://wa.me/601160542457" },
+            { name: "YUMS STORE", link: "https://wa.me/601121363464" },
+            { name: "ZANN RESELLER", link: "https://wa.me/60198393679" }
+        ];
+
+        const list = document.getElementById('list');
+        midmen.forEach(m => {
+            list.innerHTML += `
+                <div class="glass card">
+                    <div class="name-container">
+                        <div>${m.name}</div>
+                        <div class="check-circle">✓</div>
+                        ${m.owner ? '<span class="owner-badge">OWNER</span>' : ''}
+                    </div>
+                    <div style="opacity: 0.6; font-size: 0.8rem; margin-top:5px;">TRUSTED MIDMAN</div>
+                    <a href="${m.link}" target="_blank" class="btn-wa">HUBUNGI KAMI</a>
+                </div>
+            `;
+        });
+
+        const steps = [
+            {t: "PILIH MIDMAN", d: "SEMAK SENARAI KAMI DAN PILIH MIDMAN YANG DIPERCAYAI UNTUK MENGURUSKAN URUS NIAGA ANDA."},
+            {t: "HUBUNGI MIDMAN", d: "KLIK BUTANG HUBUNGI KAMI UNTUK BERMULA. PASTIKAN ANDA BERHUBUNG DENGAN NOMBOR YANG BETUL."},
+            {t: "BAGI DETAIL TRANSAKSI", d: "BERIKAN SEMUA MAKLUMAT YANG DIPERLUKAN SEPERTI HARGA, BARANG, DAN DETAIL PENJUAL/PEMBELI."},
+            {t: "PEMBELI HANTAR PAYMENT", d: "PEMBELI PERLU MEMBUAT PEMBAYARAN KE AKAUN MIDMAN SEBAGAI JAMINAN SELAMAT."},
+            {t: "MIDMAN HOLD PAYMENT", d: "MIDMAN AKAN MENYIMPAN DUIT TERSEBUT SEHINGGA PROSES JUAL BELI SELESAI."},
+            {t: "SELLER HANTAR ACCOUNT / BARANG", d: "PENJUAL AKAN MENYERAHKAN MAKLUMAT AKAUN ATAU BARANG KEPADA PEMBELI."},
+            {t: "PEMBELI CONFIRM", d: "PEMBELI AKAN MEMERIKSA BARANG. JIKA SEMUANYA OK, BERITAHU MIDMAN UNTUK PROSES SETERUSNYA."},
+            {t: "MIDMAN RELEASE PAYMENT", d: "SETELAH SEMUANYA BERJAYA, MIDMAN AKAN MEMBERIKAN BAYARAN TERSEBUT KEPADA PENJUAL."}
+        ];
+        const stepsContainer = document.getElementById('steps');
+        steps.forEach((s, i) => {
+            stepsContainer.innerHTML += `<div class="glass tutorial-step"><span class="step-num">${i+1}. ${s.t}</span>${s.d}</div>`;
+        });
+    </script>
+</body>
+</html>
